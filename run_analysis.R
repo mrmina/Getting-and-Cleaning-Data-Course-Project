@@ -12,7 +12,7 @@ data.features.file <- "./UCI HAR Dataset/features.txt"
 data.test.dir <- "./UCI HAR Dataset/test/"
 data.train.dir <- "./UCI HAR Dataset/train/"
 data.activity_labels <- "./UCI HAR Dataset/activity_labels.txt"
-finalTidyDataFilename <- "final.tidy.data.csv"
+finalTidyDataFilename <- "./summarized.tidy.data.txt"
 
 # check if we have the data archive to be processed.
 # if not, download it the current directory
@@ -92,10 +92,5 @@ dataSummary <- dataMergedFinal %>% group_by(subject,y) %>% summarise_each(funs(m
 
 
 # STEP SIX (OPTIONAL): write cleaned raw data and summarised data to CSV for further analysis
-output_file <- paste0("./raw_",finalTidyDataFilename)
-write.csv(dataMergedFinal, file = output_file)
-print(paste("Tidy RAW data has been saved in:", output_file))
-
-output_file <- paste0("./summary(avgAllColumns)_",finalTidyDataFilename)
-write.csv(dataSummary, file = output_file)
-print(paste("Tidy SUMMARIZED data has been saved in:", output_file))
+write.table(dataSummary, file = finalTidyDataFilename, row.name=FALSE)
+print(paste("Tidy SUMMARIZED data has been saved to:", finalTidyDataFilename))

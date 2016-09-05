@@ -23,7 +23,7 @@ data.features.file <- "./UCI HAR Dataset/features.txt"
 data.test.dir <- "./UCI HAR Dataset/test/"
 data.train.dir <- "./UCI HAR Dataset/train/"
 data.activity_labels <- "./UCI HAR Dataset/activity_labels.txt"
-finalTidyDataFilename <- "final.tidy.data.csv"
+finalTidyDataFilename <- "./summarized.tidy.data.txt"
 ```
 
 check if we have the data archive to be processed. If not, download it the current directory
@@ -153,27 +153,10 @@ Save the cleaned **SUMMARISED** data, for furthe furure processing
 
 
 ```r
-output_file <- paste0("./summary(avgAllColumns)_",finalTidyDataFilename)
-write.csv(dataSummary, file = output_file)
-print(paste("Tidy SUMMARIZED data has been saved in:", output_file))
+write.table(dataSummary, file = finalTidyDataFilename, row.name=FALSE)
+print(paste("Tidy SUMMARIZED data has been saved to:", finalTidyDataFilename))
 ```
 
 ```
-## [1] "Tidy SUMMARIZED data has been saved in: ./summary(avgAllColumns)_final.tidy.data.csv"
-```
-
-
-Save the cleaned **raw** data, for furthe furure analysis (OPTIONAL)
-
-Note: This is output file wasn't required by the assignment **optional**
-
-
-```r
-output_file <- paste0("./raw_",finalTidyDataFilename)
-write.csv(dataMergedFinal, file = output_file)
-print(paste("Tidy RAW data has been saved in:", output_file))
-```
-
-```
-## [1] "Tidy RAW data has been saved in: ./raw_final.tidy.data.csv"
+## [1] "Tidy SUMMARIZED data has been saved to: ./summarized.tidy.data.txt"
 ```
